@@ -2,24 +2,24 @@
 // Indítjuk a session-t
 session_start();
 
-if (!isset($_SESSION['anyereseg'])) {
-    $_SESSION['anyereseg'] = 0;} 
+if (!isset($_SESSION['a_valnyert'])) {
+    $_SESSION['a_valnyert'] = 0;} 
 
-if (!isset($_SESSION['bnyereseg'])) {
-        $_SESSION['bnyereseg'] = 0;}
+if (!isset($_SESSION['b_velnyert'])) {
+        $_SESSION['b_velnyert'] = 0;}
         
-if (!isset($_SESSION['bveszteseg'])) {
-        $_SESSION['bveszteseg'] = 0;} 
+if (!isset($_SESSION['a_rarakott'])) {
+        $_SESSION['a_rarakott'] = 0;} 
 
-if (!isset($_SESSION['aveszteseg'])) {
-    $_SESSION['aveszteseg'] = 0;} 
+if (!isset($_SESSION['b_rerakott'])) {
+    $_SESSION['b_rerakott'] = 0;} 
 
 
 if(isset($_POST['gomb1'])){
-    $_SESSION['anyereseg'] = 0;
-    $_SESSION['bveszteseg']=0;
-    $_SESSION['bnyereseg'] = 0;
-    $_SESSION['aveszteseg']=0;
+    $_SESSION['a_valnyert'] = 0;
+    $_SESSION['a_rarakott']=0;
+    $_SESSION['b_velnyert'] = 0;
+    $_SESSION['b_rerakott']=0;
 }
 
 // Ellenőrizzük, hogy a POST adatok be lettek-e küldve
@@ -28,8 +28,8 @@ if(isset($_POST['ertek1']) && isset($_POST['ertek2'])) {
     $szorzat = floatval($_POST['ertek1']) * floatval($_POST['ertek2']);
     
     // A szorzatot elmentjük a session változóba
-    $_SESSION['anyereseg'] = ($szorzat-$_POST['ertek1'])+$_SESSION['anyereseg'];
-    $_SESSION['bveszteseg']=$_SESSION['bveszteseg']+$_POST['ertek1'];
+    $_SESSION['a_valnyert'] = ($szorzat-$_POST['ertek1'])+$_SESSION['a_valnyert'];
+    $_SESSION['a_rarakott']=$_SESSION['a_rarakott']+$_POST['ertek1'];
 }
 
 if(isset($_POST['ertek3']) && isset($_POST['ertek4'])) {
@@ -37,8 +37,8 @@ if(isset($_POST['ertek3']) && isset($_POST['ertek4'])) {
     $szorzat = floatval($_POST['ertek3']) * floatval($_POST['ertek4']);
     
     // A szorzatot elmentjük a session változóba
-    $_SESSION['bnyereseg'] = $szorzat-$_POST['ertek3'];
-    $_SESSION['aveszteseg']=$_SESSION['aveszteseg']+$szorzat-$_POST['ertek1'];
+    $_SESSION['b_velnyert'] = ($szorzat-$_POST['ertek3'])+$_SESSION['b_velnyert'];
+    $_SESSION['b_rerakott']=$_SESSION['b_rerakott']+$_POST['ertek3'];
 }
 ?>
 
@@ -64,34 +64,34 @@ if(isset($_POST['ertek3']) && isset($_POST['ertek4'])) {
 
     <?php
     // Ha van szorzat értékünk a session-ban, kiírjuk azt
-    if(isset($_SESSION['anyereseg'])) {
-        echo "<p>A nyereség eredménye: " . $_SESSION['anyereseg'] . "</p>";
+    if(isset($_SESSION['a_valnyert'])) {
+        echo "<p>A-val nyert: " . $_SESSION['a_valnyert'] . "</p>";
         
     };
-    if(isset($_SESSION['aveszteseg'])) {
+    if(isset($_SESSION['b_rerakott'])) {
        
-        echo "<p>A vereség eredménye: " . $_SESSION['aveszteseg'] . "</p>";
+        echo "<p>A-ra rakott: " . $_SESSION['a_rarakott'] . "</p>";
     };
     ?>
 
-
+<form method="post" action="">
         <label for="ertek3">Első érték:</label>
-        <input type="number" id="ertek1" name="ertek1" step="any">
+        <input type="number" id="ertek3" name="ertek3" step="any">
         <br>
         <label for="ertek4">Második érték:</label>
-        <input type="number" id="ertek2" name="ertek2" step="any">
+        <input type="number" id="ertek4" name="ertek4" step="any">
         <br>
         <button type="submit">Szorozzunk!</button>
     </form>
     <?php
     // Ha van szorzat értékünk a session-ban, kiírjuk azt
-    if(isset($_SESSION['bnyereseg'])) {
-        echo "<p>b nyereség eredménye: " . $_SESSION['bnyereseg'] . "</p>";
+    if(isset($_SESSION['b_velnyert'])) {
+        echo "<p>b nyereség eredménye: " . $_SESSION['b_velnyert'] . "</p>";
        
     }
-    if(isset($_SESSION['bveszteseg'])) {
+    if(isset($_SESSION['a_rarakott'])) {
      
-        echo "<p>A vereség eredménye: " . $_SESSION['bveszteseg'] . "</p>";
+        echo "<p>B vereség eredménye: " . $_SESSION['b_rerakott'] . "</p>";
     }
 
 
