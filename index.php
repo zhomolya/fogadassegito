@@ -2,6 +2,19 @@
 // Indítjuk a session-t
 session_start();
 
+if (!isset($_SESSION['anyereseg'])) {
+    $_SESSION['anyereseg'] = 0;} 
+
+if (!isset($_SESSION['bnyereseg'])) {
+        $_SESSION['bnyereseg'] = 0;}
+        
+if (!isset($_SESSION['bveszteseg'])) {
+        $_SESSION['bveszteseg'] = 0;} 
+
+if (!isset($_SESSION['aveszteseg'])) {
+    $_SESSION['aveszteseg'] = 0;} 
+
+
 if(isset($_POST['gomb1'])){
     $_SESSION['anyereseg'] = 0;
     $_SESSION['bveszteseg']=0;
