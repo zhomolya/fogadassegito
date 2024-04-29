@@ -103,5 +103,21 @@ if(isset($_POST['ertek3']) && isset($_POST['ertek4'])) {
 
 </form>
 
+
+<p> Ha AA nyer: <?php   echo "Az a_valnyert értéke: " . $_SESSION['a_valnyert'] - $_SESSION['b_rerakott'] ; ?><form method=post><input type=submit name=ajavit value=elsőrejavít></form><br></p>
+<p> Ha BB nyer: <?php   echo "Az a_valnyert értéke: " . $_SESSION['b_velnyert'] - $_SESSION['a_rarakott'] ; ?><form method=post><input type=submit name=bjavit value=másodikrajavít><br>
+
+<?php
+
+if(isset($_POST['ajavit'])){
+    echo("ara");
+}
+
+if(isset($_POST['bjavit'])){
+    echo("bre");
+}
+
+?>
+
 </body>
 </html>
