@@ -94,8 +94,8 @@ if(isset($_POST['ertek3']) && isset($_POST['ertek4'])) {
         echo "<p>B vereség eredménye: " . $_SESSION['b_rerakott'] . "</p>";
     }
 
-
-
+    $k1=$_SESSION['a_valnyert'] - $_SESSION['b_rerakott'] ;
+    $k2=$_SESSION['b_velnyert'] - $_SESSION['a_rarakott'] ;
 
     ?>
 <form method="post" action="">
@@ -104,18 +104,22 @@ if(isset($_POST['ertek3']) && isset($_POST['ertek4'])) {
 </form>
 
 
-<p> Ha AA nyer: <?php   echo "Az a_valnyert értéke: " . $_SESSION['a_valnyert'] - $_SESSION['b_rerakott'] ; ?><form method=post><input type=submit name=ajavit value=elsőrejavít></form><br></p>
-<p> Ha BB nyer: <?php   echo "Az a_valnyert értéke: " . $_SESSION['b_velnyert'] - $_SESSION['a_rarakott'] ; ?><form method=post><input type=submit name=bjavit value=másodikrajavít><br>
+<p> Ha AA nyer: <?php   echo "A nyert értéke: $k1 <form method=post><input type=text name=javitoo><input type=hidden name=bukoo value=$k1><input type=submit name=javit value=$k1></form>"?>
+<p> Ha BB nyer: <?php   echo "A nyert értéke: $k2 <form method=post><input type=text name=javitoo><input type=hidden name=bukoo value=$k2><input type=submit name=javit value=$k2></form>"?>
 
 <?php
 
-if(isset($_POST['ajavit'])){
-    echo("ara");
+if(isset($_POST['javit'])){
+    print("itt vagyok");
+    $ertek=$_POST['bukoo']*-1;
+   
+    $szorzo=$_POST['javitoo']-1;
+    
+    $mennyi=($ertek/$szorzo);
+    print($mennyi);
 }
 
-if(isset($_POST['bjavit'])){
-    echo("bre");
-}
+
 
 ?>
 
